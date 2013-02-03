@@ -1,3 +1,4 @@
 file created via site
 line 2
-line 3 - local
+line 3 - local + remote
+my line
