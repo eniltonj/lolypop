@@ -8,22 +8,23 @@ on:
 
 jobs:
 
-  if: github.event_name == 'release'
   build:
-  timeout-minutes: 20
-  runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    build:
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
 
-  steps:
+    steps:
 
-  - uses: actions/checkout@1.0.0
+    - uses: actions/checkout@1.0.0
 
-  - name: Build Changelog
-    id: github_release
-    uses: mikepenz/release-changelog-builder-action@v1
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build Changelog
+      id: github_release
+      uses: mikepenz/release-changelog-builder-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  - uses: meeDamian/github-release@2.0
-    with:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      body: ${{steps.github_release.outputs.changelog}}
+    - uses: meeDamian/github-release@2.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        body: ${{steps.github_release.outputs.changelog}}
