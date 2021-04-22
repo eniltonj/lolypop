@@ -27,5 +27,6 @@ jobs:
 
     - uses: meeDamian/github-release@2.0
       with:
+        allow_override: true
         token: ${{ secrets.GITHUB_TOKEN }}
         body: ${{steps.github_release.outputs.changelog}}
