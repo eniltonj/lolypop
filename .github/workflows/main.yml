@@ -21,11 +21,15 @@ jobs:
 
     - name: Build Changelog
       id: github_release
-      uses: mikepenz/release-changelog-builder-action@v1
+      uses: mikepenz/release-changelog-builder-action@v1.7.2
       with:
         commitMode: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - run: |
+        echo ${{steps.github_release.outputs.changelog}}
+        echo ${{steps.github_release.outputs.failed}}
 
     - uses: meeDamian/github-release@2.0
       with:
