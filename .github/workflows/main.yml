@@ -15,7 +15,9 @@ jobs:
 
     steps:
 
-    - uses: actions/checkout@1.0.0
+      uses: actions/checkout@v2.1.0
+      with:
+        fetch-depth: 0
 
     - name: Build Changelog
       id: github_release
