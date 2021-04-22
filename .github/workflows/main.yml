@@ -24,6 +24,7 @@ jobs:
       uses: mikepenz/release-changelog-builder-action@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        commitMode: true
 
     - uses: meeDamian/github-release@2.0
       with:
