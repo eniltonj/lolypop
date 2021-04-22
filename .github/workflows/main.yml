@@ -22,9 +22,10 @@ jobs:
     - name: Build Changelog
       id: github_release
       uses: mikepenz/release-changelog-builder-action@v1
+      with:
+        commitMode: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        commitMode: true
 
     - uses: meeDamian/github-release@2.0
       with:
