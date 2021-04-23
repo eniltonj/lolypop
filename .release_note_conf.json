@@ -26,7 +26,7 @@
   "transformers": [
     {
       "pattern": "\\[.*\\] (.*)",
-      "target": "$1\n"
+      "target": "$1"
     }
   ],
   "max_tags_to_fetch": 200,
