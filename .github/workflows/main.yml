@@ -29,7 +29,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - run: cat ${{steps.github_release.outputs.changelog}}
+    - run: |
+        cat << EOF
+        ${{steps.github_release.outputs.changelog}}
+        EOF
 
     - uses: meeDamian/github-release@2.0
       if: github.event_name == 'release'
