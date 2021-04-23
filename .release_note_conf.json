@@ -1,25 +1,11 @@
 {
   "categories": [
-    {
-      "title": "## 🚀 Features",
-      "labels": ["feature"]
-    },
-    {
-      "title": "## 🐛 Fixes",
-      "labels": ["fix"]
-    },
-    {
-      "title": "## 🧪 Tests",
-      "labels": ["test"]
-    }
+      {
+          "title": "## 📦 Uncategorized",
+          "labels": []
+      }
   ],
-  "sort": "ASC",
-  "template": "${{CHANGELOG}}",
-  "empty_template": "- no changes",
-  "max_tags_to_fetch": 200,
-  "max_pull_requests": 0,
-  "max_back_track_time_days": 365,
-  "tag_resolver": {
-    "method": "semver"
-  }
+  "template": "${{CHANGELOG}}\n\nUncategorized:\n${{UNCATEGORIZED}}\n\nIgnored:\n${{IGNORED}}\n\n${{UNCATEGORIZED_COUNT}}\n${{IGNORED_COUNT}}",
+  "pr_template": "- ${{TITLE}}\n",
+  "empty_template": "${{OWNER}}\n${{REPO}}\n${{FROM_TAG}}\n${{TO_TAG}}"
 }
