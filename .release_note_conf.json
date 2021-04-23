@@ -13,29 +13,12 @@
       "labels": ["test"]
     }
   ],
-  "ignore_labels": [
-    "ignore"
-  ],
   "sort": "ASC",
   "template": "${{CHANGELOG}}",
   "empty_template": "- no changes",
-  "label_extractor": [
-    {
-      "pattern": "(.) (.+)",
-      "target": "$1\n $2\n"
-    },
-    {
-      "pattern": "(.) (.+)",
-      "target": "$1\n $2\n",
-      "on_property": "title"
-    }
-  ],
   "max_tags_to_fetch": 200,
   "max_pull_requests": 0,
   "max_back_track_time_days": 365,
-  "exclude_merge_branches": [
-    "Owner/qa"
-  ],
   "tag_resolver": {
     "method": "semver"
   }
