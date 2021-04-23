@@ -19,6 +19,14 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Tag name
+      run: |
+        GIT_TAG=${{ github.ref }}
+        GIT_TAG=${GIT_TAG#refs/tags/}
+        echo "GIT_TAG=${GIT_TAG}" >> $GITHUB_ENV
+
+    - run: echo ${GIT_TAG}
+
     - name: Preview Changelog
       if: github.event_name != 'release'
       id: github_release_preview
@@ -31,6 +39,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Preview release notes
+      if: github.event_name != 'release'
       run: |
         cat << EOF
         ${{steps.github_release_preview.outputs.changelog}}
