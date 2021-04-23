@@ -20,10 +20,12 @@ jobs:
         fetch-depth: 0
 
     - name: Tag name
+      id: tag_name
       run: |
         GIT_TAG=${{ github.ref }}
         GIT_TAG=${GIT_TAG#refs/tags/}
         echo "GIT_TAG=${GIT_TAG}" >> $GITHUB_ENV
+        echo "::set-output name=git_tag::${GIT_TAG}"
 
     - run: echo ${GIT_TAG}
 
@@ -33,10 +35,9 @@ jobs:
       with:
         commitMode: true
         configuration: ".release_note_conf.json"
-        toTag: ${TAG}
+        toTag: ${{steps.tag_name.outputs.git_tag}}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TAG: ${GIT_TAG}
 
     - name: Preview release notes
       run: |
