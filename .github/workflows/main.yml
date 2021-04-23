@@ -27,11 +27,9 @@ jobs:
         echo "GIT_TAG=${GIT_TAG}" >> $GITHUB_ENV
         echo "::set-output name=git_tag::${GIT_TAG}"
 
-    - run: echo ${GIT_TAG}
-
     - name: Build Changelog
       id: github_release
-      uses: mikepenz/release-changelog-builder-action@v1.7.2
+      uses: mikepenz/release-changelog-builder-action@v1
       with:
         commitMode: true
         configuration: ".release_note_conf.json"
@@ -52,39 +50,3 @@ jobs:
         allow_override: true
         token: ${{ secrets.GITHUB_TOKEN }}
         body: ${{steps.github_release.outputs.changelog}}
-
-    # - name: Preview Changelog
-    #   if: github.event_name != 'release'
-    #   id: github_release_preview
-    #   uses: mikepenz/release-changelog-builder-action@v1.7.2
-    #   with:
-    #     commitMode: true
-    #     configuration: ".release_note_conf.json"
-    #     toTag: "HEAD"
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    # - name: Preview release notes
-    #   if: github.event_name != 'release'
-    #   run: |
-    #     cat << EOF
-    #     ${{steps.github_release_preview.outputs.changelog}}
-    #     EOF
-
-    # - name: Build Changelog
-    #   if: github.event_name == 'release'
-    #   id: github_release
-    #   uses: mikepenz/release-changelog-builder-action@v1.7.2
-    #   with:
-    #     commitMode: true
-    #     configuration: ".release_note_conf.json"
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    # - name: Write release notes
-    #   uses: meeDamian/github-release@2.0
-    #   if: github.event_name == 'release'
-    #   with:
-    #     allow_override: true
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-    #     body: ${{steps.github_release.outputs.changelog}}
