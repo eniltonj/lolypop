@@ -18,9 +18,9 @@
   "empty_template": "${{OWNER}}\n${{REPO}}\n${{FROM_TAG}}\n${{TO_TAG}}",
   "label_extractor": [
     {
-      "pattern": "([.]).",
+      "pattern": "([.*]).*",
       "target": "$1",
       "on_property": "title"
     }
-  ],
+  ]
 }
