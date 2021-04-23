@@ -30,9 +30,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - run: |
+        ::group::"entries to release notes"
         cat << EOF
         ${{steps.github_release.outputs.changelog}}
         EOF
+        ::endgroup::
 
     - uses: meeDamian/github-release@2.0
       if: github.event_name == 'release'
