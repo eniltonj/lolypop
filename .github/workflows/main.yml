@@ -32,7 +32,7 @@ jobs:
       uses: mikepenz/release-changelog-builder-action@v1
       with:
         commitMode: true
-        configuration: ".release_note_conf.json"
+        configuration: ".release_notes_conf.json"
         toTag: ${{steps.tag_name.outputs.git_tag}}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
