@@ -18,7 +18,6 @@
   ],
   "sort": "ASC",
   "template": "${{CHANGELOG}}",
-  "pr_template": "",
   "empty_template": "- no changes",
   "label_extractor": [
     {
