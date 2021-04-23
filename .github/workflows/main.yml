@@ -19,8 +19,9 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Build Changelog
-      id: github_release
+    - name: Preview Changelog
+      if: github.event_name != 'release'
+      id: github_release_preview
       uses: mikepenz/release-changelog-builder-action@v1.7.2
       with:
         commitMode: true
@@ -29,13 +30,24 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: release notes preview
+    - name: Preview release notes
       run: |
         cat << EOF
-        ${{steps.github_release.outputs.changelog}}
+        ${{steps.github_release_preview.outputs.changelog}}
         EOF
 
-    - uses: meeDamian/github-release@2.0
+    - name: Build Changelog
+      if: github.event_name == 'release'
+      id: github_release
+      uses: mikepenz/release-changelog-builder-action@v1.7.2
+      with:
+        commitMode: true
+        configuration: ".release_note_conf.json"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Write release notes
+      uses: meeDamian/github-release@2.0
       if: github.event_name == 'release'
       with:
         allow_override: true
