@@ -33,9 +33,10 @@ jobs:
       with:
         commitMode: true
         configuration: ".release_note_conf.json"
-        toTag: ${GIT_TAG}
+        toTag: ${TAG}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TAG: ${GIT_TAG}
 
     - name: Preview release notes
       run: |
