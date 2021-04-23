@@ -25,6 +25,7 @@ jobs:
       with:
         commitMode: true
         configuration: ".release_note_conf.json"
+        toTag: "HEAD"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
