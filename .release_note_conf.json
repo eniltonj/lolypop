@@ -18,11 +18,18 @@
   ],
   "sort": "ASC",
   "template": "${{CHANGELOG}}",
+  "pr_template": " ",
   "empty_template": "- no changes",
   "label_extractor": [
     {
       "pattern": "(.) (.+)",
-      "target": "$1"
+      "target": "$1\n $2\n"
+    }
+  ],
+  "transformers": [
+    {
+      "pattern": "[\\-\\*] (\\[(...|feature|fix|other)\\])( )?(.+?)\n(.+?[\\-\\*] )(.+)",
+      "target": "$1\n $2\n $3\n $4\n $5\n $6\n"
     }
   ],
   "max_tags_to_fetch": 200,
