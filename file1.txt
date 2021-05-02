@@ -3,3 +3,4 @@ line 2
 mais uma linha
 normal
 a new feature
+other feature
